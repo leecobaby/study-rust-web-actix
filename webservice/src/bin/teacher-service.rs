@@ -7,6 +7,8 @@ use std::sync::Mutex;
 
 #[path = "../db_access.rs"]
 mod db_access;
+#[path = "../errors.rs"]
+mod errors;
 #[path = "../handlers.rs"]
 mod handlers;
 #[path = "../models.rs"]
