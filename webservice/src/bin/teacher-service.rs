@@ -1,3 +1,4 @@
+use crate::errors::MyError;
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
 use sqlx::postgres::PgPoolOptions;
@@ -36,11 +37,17 @@ async fn main() -> io::Result<()> {
         db: db_pool,
     });
 
+    let error_data = web::JsonConfig::default().error_handler(|_err, _req| {
+        MyError::InvalidInput("Please provide a valid input".to_string()).into()
+    });
+
     let app = move || {
         App::new()
             .app_data(shared_data.clone())
+            .app_data(error_data.clone())
             .configure(course_routes)
             .configure(general_routes)
+            .configure(teacher_routes)
     };
 
     HttpServer::new(app).bind("127.0.0.1:3000")?.run().await
