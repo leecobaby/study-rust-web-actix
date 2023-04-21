@@ -53,9 +53,9 @@ pub async fn post_new_teacher_db(
 
     Ok(Teacher {
         id: result.id,
-        name: result.name.clone().unwrap(),
-        picture_url: result.picture_url.clone().unwrap(),
-        profile: result.profile.clone().unwrap(),
+        name: result.name.unwrap(),
+        picture_url: result.picture_url.unwrap(),
+        profile: result.profile.unwrap(),
     })
 }
 
