@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher registeration</title>
+</head>
+
+<body>
+  <h2 class="header">Teacher registeration</h2>
+  <div class="center">
+    <form action="/register-post" method="POST">
+      <label for="name">Teacher Name</label>
+      <input type="text" name="name" id="name" placeholder="Enter name" value="{{current_name}}">
+      <label for="imageurl">Image url</label>
+      <input type="text" name="imageurl" id="imageurl" placeholder="Enter image url" value="{{current_imageurl}}">
+      <label for="profile">Profile</label>
+      <input type="text" name="profile" id="profile" placeholder="Enter profile" value="{{current_profile}}">
+      <label for="error">
+        <p style="color: red">{{error}}</p>
+      </label>
+      <br>
+      <button type="submit" id="button1">Register</button>
+    </form>
+  </div>
+</body>
+
+</html>
