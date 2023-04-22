@@ -9,6 +9,7 @@ default-run = "teacher-service"
 [dependencies]
 actix-web = "4"
 actix-rt = "2.6.0"
+actix-cors = "0.6.0"
 dotenv = "0.15.0"
 serde = { version = "1.0.134", features = ["derive"] }
 chrono = { version = "0.4.19", features = ["serde"] }

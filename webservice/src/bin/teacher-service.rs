@@ -1,4 +1,6 @@
 use crate::errors::MyError;
+use actix_cors::Cors;
+use actix_web::http;
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
 use sqlx::postgres::PgPoolOptions;
@@ -42,12 +44,23 @@ async fn main() -> io::Result<()> {
     });
 
     let app = move || {
+        let cors = Cors::default()
+            .allowed_origin("http://localhost:8081/")
+            .allowed_origin_fn(|origin, _req_head| {
+                origin.as_bytes().starts_with(b"http://localhost")
+            })
+            .allowed_methods(vec!["GET", "POST"])
+            .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
+            .allowed_header(http::header::CONTENT_TYPE)
+            .max_age(3600);
+
         App::new()
             .app_data(shared_data.clone())
             .app_data(error_data.clone())
             .configure(course_routes)
             .configure(general_routes)
             .configure(teacher_routes)
+            .wrap(cors)
     };
 
     HttpServer::new(app).bind("127.0.0.1:3000")?.run().await
