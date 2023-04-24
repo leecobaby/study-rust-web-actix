@@ -45,7 +45,7 @@ async fn main() -> io::Result<()> {
 
     let app = move || {
         let cors = Cors::default()
-            .allowed_origin("http://localhost:8081/")
+            .allowed_origin("http://localhost:8080/")
             .allowed_origin_fn(|origin, _req_head| {
                 origin.as_bytes().starts_with(b"http://localhost")
             })
