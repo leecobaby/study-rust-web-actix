@@ -88,3 +88,15 @@ wasm-pack build --release
 cd www
 npm run build
 ```
+
+打包完成后生成了一个 dist 文件夹，里面的内容就是我们的生成的 web 资源文件，只要把这些文件放进 web 服务器中就可以运行了，如果你没有 web 服务器，你可以使用一个插件来模拟一个 web 服务器的环境：
+
+```sh
+npm i http-server
+```
+
+安装完成后，你可以运行以下命令：
+
+```sh
+http-server
+```
